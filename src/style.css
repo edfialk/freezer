@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #3c5e7e;
+}
+
+.bg-bg {
+  background-color: #3c5e7e;
+}
+
+.store,
+.item {
+  background-color: #709ab8;
+  color: #f2f7f9;
+  @apply p-5 text-center content-center grid;
+}
+
+.bg-dark {
+  background-color: #354f69;
+}
+
+.bg-light {
+  background-color: #709ab8;
+}
+
+.text-primary {
+  color: #f2f7f9;
+}
+
+.store-list-item {
+  @apply flex justify-between my-2 p-3 rounded-lg;
+}
+.store-list-item.up {
+  @apply shadow-2xl bg-light;
+}
+.store-list-item.down {
+  @apply shadow-inner bg-dark;
+}
