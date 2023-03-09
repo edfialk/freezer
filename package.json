@@ -2,6 +2,7 @@
   "name": "freezer",
   "private": true,
   "version": "0.0.0",
+  "homepage": "http://edfialk.com/freezer",
   "type": "module",
   "scripts": {
     "dev": "vite",
