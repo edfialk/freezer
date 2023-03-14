@@ -26,7 +26,7 @@ const store = createStore({
 		setReady(state, value) {
 			state.ready = value
 		},
-		setItemCount(state, {id, count}) {
+		setItemCount(state, { id, count }) {
 			const item = state.items.find(e => e.id == id);
 			item.count = count;
 			state.items = [
@@ -34,7 +34,7 @@ const store = createStore({
 				item
 			];
 		},
-		setItemMax(state, {id, max}) {
+		setItemMax(state, { id, max }) {
 			const item = state.items.find(e => e.id == id);
 			item.max = max;
 			state.items = [
@@ -59,24 +59,36 @@ const store = createStore({
 			this.commit('setFetching', false)
 			this.commit('setReady', true)
 		},
-		async setItemCount({commit}, {id, count}) {
-			commit('setItemCount', {id, count})
+		async setItemCount({ commit }, { id, count }) {
+			commit('setItemCount', { id, count })
 			const { error } = await supabase
 				.from('items')
 				.update({ count })
 				.eq('id', id)
 		},
-		async setItemMax({commit}, {id, max}) {
-			commit('setItemMax', {id, max})
+		async setItemMax({ commit }, { id, max }) {
+			commit('setItemMax', { id, max })
 			const { error } = await supabase
 				.from('items')
 				.update({ max })
 				.eq('id', id)
 		},
-		async checkout({dispatch}, items) {
+		async checkout({ dispatch }, items) {
 			items.forEach(e => {
-				// dispatch('setItemCount', {id: e.id, count: e.max})
+				dispatch('setItemCount', { id: e.id, count: e.count })
 			});
+		},
+		async addItem({ commit }, item ) {
+			// commit('addItem', item);
+			const stores = item.stores;
+			delete item.stores;
+			const { data } = await supabase
+				.from('items')
+				.insert(item)
+				.select()
+			const { error } = await supabase
+				.from('items_stores')
+				.insert(stores.map(s => ({ item_id: data[0].id, store_id: s.id })))
 		}
 	},
 

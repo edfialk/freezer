@@ -1,0 +1,1 @@
+import{_ as t,q as o,o as c,a as s,f as n,s as r,b as a}from"./index-5abd09c0.js";const _={},i={class:"grid place-content-center h-screen"},l=a("img",{src:"https://placekitten.com/300/300"},null,-1);function d(p,f){const e=o("router-link");return c(),s("div",i,[n(e,{to:"/"},{default:r(()=>[l]),_:1})])}const u=t(_,[["render",d]]);export{u as default};

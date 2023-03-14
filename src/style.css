@@ -12,7 +12,7 @@ body {
 
 .store,
 .item {
-  background-color: #709ab8;
+  /* background-color: #709ab8; */
   color: #f2f7f9;
   @apply p-5 text-center content-center grid;
 }
@@ -29,12 +29,13 @@ body {
   color: #f2f7f9;
 }
 
+/* p-3 rounded-lg */
 .store-list-item {
-  @apply flex justify-between my-2 p-3 rounded-lg;
+  @apply flex justify-between my-2;
 }
 .store-list-item.up {
-  @apply shadow-2xl bg-light;
+  /* @apply shadow-2xl bg-light; */
 }
 .store-list-item.down {
-  @apply shadow-inner bg-dark;
+  /* @apply shadow-inner bg-dark; */
 }
