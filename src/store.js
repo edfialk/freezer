@@ -42,6 +42,9 @@ const store = createStore({
 				item
 			];
 		},
+		addItem(state, item) {
+			state.items.push(item)
+		}
 	},
 
 	actions: {
@@ -79,7 +82,8 @@ const store = createStore({
 			});
 		},
 		async addItem({ commit }, item ) {
-			// commit('addItem', item);
+			// if (!item.stores) item.stores = []
+			commit('addItem', item);
 			const stores = item.stores;
 			delete item.stores;
 			const { data } = await supabase
@@ -99,9 +103,9 @@ const store = createStore({
 		store: (state) => (id) => {
 			return state.stores.find(i => i.id === id)
 		},
-		isReady: state => !state.fetching,
+		isReady: state => state.ready,
 		itemsByStore: (state) => (id) => {
-			return state.items.filter(i => i.stores.findIndex(s => s.id === id) != -1)
+			return state.items.filter(i => i.stores && i.stores.findIndex(s => s.id === id) != -1)
 		}
 	}
 })
